@@ -1,0 +1,78 @@
+<xs:schema xmlns="http://www.w3.org/2001/XMLSchema"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:p="http://appliances.org"
+           targetNamespace="http://appliances.org/products"
+           elementFormDefault="qualified">
+
+    <xs:import namespace="http://appliances.org" schemaLocation="appliances.xsd"/>
+
+    <!-- *********************************** Start Requests ************************************** -->
+    <xs:element name="findAllProductsRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="empty" type="xs:boolean" minOccurs="0"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="findProductsByNameRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="name" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="findProductByIdRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="productId" type="xs:int"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="createProductRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="product" type="p:Product"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="updateProductRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="product" type="p:Product"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="deleteProductRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="productId" type="xs:int"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <!-- *********************************** End Requests **************************************** -->
+
+    <!-- ********************************** Start Responses ************************************** -->
+    <xs:element name="productListResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="products" type="p:Product" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="createdIdResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="id" type="xs:int"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="findProductByIdResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="product" type="p:Product"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <!-- *********************************** End Responses ************************************** -->
+
+</xs:schema>

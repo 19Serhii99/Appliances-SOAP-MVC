@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Appliances Products</title>
+    <link rel="stylesheet" th:href="@{/bootstrap.css}">
+    <link rel="stylesheet" th:href="@{/styles.css}">
+    <script th:src="@{/jquery.js}"></script>
+    <script th:src="@{/bootstrap.js}"></script>
+    <script th:src="@{/scripts.js}"></script>
+</head>
+<body>
+<script th:inline="javascript">
+    let products = [[${products}]];
+</script>
+<div id="wrapper">
+    <br>
+    <h2 id="header">Appliances Product Catalog System</h2>
+    <hr class="w-100">
+    <form th:action="@{/search}" class="d-flex">
+        <input th:value="${searchField}" th:name="name" id="search" class="form-control" type="text" placeholder="Search for products...">
+        <button id="search-button" class="btn btn-block btn-success form-control">Search</button>
+    </form>
+    <br>
+    <div id="content">
+        <table class="table-products" th:if="${not #lists.isEmpty(products)}">
+            <tbody>
+            <tr class="table-row-first">
+                <th class="product-first-row-border product-first-row-left-border">ID</th>
+                <th class="product-first-row-border">Brand</th>
+                <th class="product-first-row-border">Product name</th>
+                <th class="product-first-row-border product-row-right-border">Price</th>
+            </tr>
+            <tr th:each="product, iter : ${products}" class="table-row" th:onclick="'handleProductOpt(' + ${iter.index} + ')'">
+                <td th:text="${product.id}" class="product-row-border"></td>
+                <td th:text="${product.brand}" class="product-row-border"></td>
+                <td th:text="${product.name}" class="product-row-border"></td>
+                <td th:text="${#numbers.formatCurrency(product.price)}" class="product-row-border"></td>
+            </tr>
+            </tbody>
+        </table>
+        <br>
+        <div class="d-flex flex-column w-100 card">
+            <span class="card-header">Product form</span>
+            <div class="card-body">
+                <div class="d-flex flex-wrap justify-content-center">
+                    <div class="form-group px-2">
+                        <label for="name">Product name <span class="text-danger">*</span></label>
+                        <input id="name" class="form-control" type="text" oninput="onFieldInput()">
+                    </div>
+                    <div class="form-group px-2">
+                        <label for="brand">Brand <span class="text-danger">*</span></label>
+                        <input id="brand" class="form-control" type="text" oninput="onFieldInput()">
+                    </div>
+                    <div class="form-group px-2">
+                        <label for="price">Price <span class="text-danger">*</span></label>
+                        <input id="price" class="form-control" type="text" oninput="onFieldInput()">
+                    </div>
+                    <div class="form-group px-2">
+                        <label for="amount">Amount <span class="text-danger">*</span></label>
+                        <input id="amount" class="form-control" type="text" oninput="onFieldInput()">
+                    </div>
+                    <div class="form-group px-2">
+                        <label for="width">Width</label>
+                        <input id="width" class="form-control" type="text" oninput="onFieldInput()">
+                    </div>
+                    <div class="form-group px-2">
+                        <label for="height">Height</label>
+                        <input id="height" class="form-control" type="text" oninput="onFieldInput()">
+                    </div>
+                    <div class="form-group px-2">
+                        <label for="depth">Depth</label>
+                        <input id="depth" class="form-control" type="text" oninput="onFieldInput()">
+                    </div>
+                    <div class="form-group px-2">
+                        <label for="weight">Weight</label>
+                        <input id="weight" class="form-control" type="text" oninput="onFieldInput()">
+                    </div>
+                </div>
+                <div class="d-flex justify-content-center">
+                    <button id="create" class="btn btn-primary mx-2 action-button" disabled onclick="createProduct()">Create</button>
+                    <button id="update" class="btn btn-success mx-2 action-button" disabled onclick="updateProduct()">Update</button>
+                    <button id="delete" class="btn btn-danger mx-2 action-button" disabled onclick="deleteProduct()">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br><br>
+</div>
+
+</body>
+</html>

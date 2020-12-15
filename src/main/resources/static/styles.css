@@ -1,0 +1,105 @@
+#wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 1024px;
+    width: 100%;
+}
+
+#header {
+    text-align: center;
+    font-family: "Comic Sans MS", serif;
+}
+
+.table-products {
+    border-style: solid;
+    border-width: 0;
+    border-top-width: 1px;
+    border-color: #8a837f;
+    text-align: center;
+    width: 100%;
+}
+
+.table-row-first {
+    background-color: #514943;
+    color: white;
+    height: 50px;
+}
+
+.product-first-row-border {
+    border-style: solid;
+    border-width: 0;
+    border-right-width: 1px;
+    border-color: #8a837f;
+    padding: 1rem;
+}
+
+.product-first-row-left-border {
+    border-style: solid;
+    border-left-width: 1px;
+    border-color: #8a837f;
+}
+
+.product-row-border {
+    border-style: dashed;
+    border-width: 0;
+    border-right-width: 1px;
+    border-color: #d6d6d6;
+    padding: 1rem;
+}
+
+.product-row-right-border {
+    border-style: solid;
+    border-right-width: 1px;
+    border-color: #d6d6d6;
+}
+
+.table-row:last-child {
+    border-style: solid;
+    border-width: 0;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    border-color: #d6d6d6;
+}
+
+.table-row:nth-child(even) {
+    background-color: #fff;
+}
+
+.table-row:nth-child(odd) {
+    background-color: #f5f5f5;
+}
+
+.table-row:hover {
+    background-color: #c7c7c7;
+    cursor: pointer;
+}
+
+.table-row {
+    border-style: solid;
+    border-width: 0;
+    border-left-width: 1px;
+    border-color: #d6d6d6;
+}
+
+#search {
+    max-width: 200px;
+    width: 100%;
+}
+
+#search-button {
+    max-width: 75px;
+    width: 100%;
+    margin-left: 20px;
+}
+
+.action-button {
+    max-width: 100px;
+    width: 100%;
+}

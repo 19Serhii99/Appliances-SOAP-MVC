@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:sch="http://appliances.org/products"
+                  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://appliances.org/products"
+                  targetNamespace="http://appliances.org/products">
+    <wsdl:types>
+        <xs:schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:p="http://appliances.org"
+                   xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+                   targetNamespace="http://appliances.org/products">
+
+            <xs:import namespace="http://appliances.org" schemaLocation="appliances.xsd"/>
+
+            <!-- *********************************** Start Requests ************************************** -->
+            <xs:element name="findAllProductsRequest">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="empty" type="xs:boolean"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="findProductsByNameRequest">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="name" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="findProductByIdRequest">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="productId" type="xs:int"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="createProductRequest">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="product" type="p:Product"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="updateProductRequest">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="product" type="p:Product"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="deleteProductRequest">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="productId" type="xs:int"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <!-- *********************************** End Requests **************************************** -->
+
+            <!-- ********************************** Start Responses ************************************** -->
+            <xs:element name="productListResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element maxOccurs="unbounded" minOccurs="0" name="products" type="p:Product"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="createdIdResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="id" type="xs:int"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="findProductByIdResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="product" type="p:Product"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <!-- *********************************** End Responses ************************************** -->
+
+        </xs:schema>
+    </wsdl:types>
+    <wsdl:message name="createProductRequest">
+        <wsdl:part element="tns:createProductRequest" name="createProductRequest">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="findProductByIdResponse">
+        <wsdl:part element="tns:findProductByIdResponse" name="findProductByIdResponse">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="updateProductRequest">
+        <wsdl:part element="tns:updateProductRequest" name="updateProductRequest">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="deleteProductRequest">
+        <wsdl:part element="tns:deleteProductRequest" name="deleteProductRequest">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="createdIdResponse">
+        <wsdl:part element="tns:createdIdResponse" name="createdIdResponse">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="findAllProductsRequest">
+        <wsdl:part element="tns:findAllProductsRequest" name="findAllProductsRequest">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="findProductsByNameRequest">
+        <wsdl:part element="tns:findProductsByNameRequest" name="findProductsByNameRequest">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="findProductByIdRequest">
+        <wsdl:part element="tns:findProductByIdRequest" name="findProductByIdRequest">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="productListResponse">
+        <wsdl:part element="tns:productListResponse" name="productListResponse">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:portType name="ProductsPort">
+        <wsdl:operation name="createProduct">
+            <wsdl:input message="tns:createProductRequest" name="createProductRequest">
+            </wsdl:input>
+        </wsdl:operation>
+        <wsdl:operation name="findProductById">
+            <wsdl:input message="tns:findProductByIdRequest" name="findProductByIdRequest">
+            </wsdl:input>
+            <wsdl:output message="tns:findProductByIdResponse" name="findProductByIdResponse">
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="updateProduct">
+            <wsdl:input message="tns:updateProductRequest" name="updateProductRequest">
+            </wsdl:input>
+        </wsdl:operation>
+        <wsdl:operation name="deleteProduct">
+            <wsdl:input message="tns:deleteProductRequest" name="deleteProductRequest">
+            </wsdl:input>
+        </wsdl:operation>
+        <wsdl:operation name="createdId">
+            <wsdl:output message="tns:createdIdResponse" name="createdIdResponse">
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="findAllProducts">
+            <wsdl:input message="tns:findAllProductsRequest" name="findAllProductsRequest">
+            </wsdl:input>
+        </wsdl:operation>
+        <wsdl:operation name="findProductsByName">
+            <wsdl:input message="tns:findProductsByNameRequest" name="findProductsByNameRequest">
+            </wsdl:input>
+        </wsdl:operation>
+        <wsdl:operation name="productList">
+            <wsdl:output message="tns:productListResponse" name="productListResponse">
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="ProductsPortSoap11" type="tns:ProductsPort">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="createProduct">
+            <soap:operation soapAction=""/>
+            <wsdl:input name="createProductRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+        </wsdl:operation>
+        <wsdl:operation name="findProductById">
+            <soap:operation soapAction=""/>
+            <wsdl:input name="findProductByIdRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="findProductByIdResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="updateProduct">
+            <soap:operation soapAction=""/>
+            <wsdl:input name="updateProductRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+        </wsdl:operation>
+        <wsdl:operation name="deleteProduct">
+            <soap:operation soapAction=""/>
+            <wsdl:input name="deleteProductRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+        </wsdl:operation>
+        <wsdl:operation name="createdId">
+            <soap:operation soapAction=""/>
+            <wsdl:output name="createdIdResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="findAllProducts">
+            <soap:operation soapAction=""/>
+            <wsdl:input name="findAllProductsRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+        </wsdl:operation>
+        <wsdl:operation name="findProductsByName">
+            <soap:operation soapAction=""/>
+            <wsdl:input name="findProductsByNameRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+        </wsdl:operation>
+        <wsdl:operation name="productList">
+            <soap:operation soapAction=""/>
+            <wsdl:output name="productListResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="ProductsPortService">
+        <wsdl:port binding="tns:ProductsPortSoap11" name="ProductsPortSoap11">
+            <soap:address location="http://localhost:8080/ws"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>
